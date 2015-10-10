@@ -34,7 +34,7 @@ public:
         setSize (600, 600);
         // specify the number of input and output channels that we want to open
         setAudioChannels (2, 2);
-		initializeMyo();
+		//initializeMyo();
     }
 
     ~MainContentComponent()
@@ -56,8 +56,13 @@ public:
     void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill) override
     {
         bufferToFill.clearActiveBufferRegion();
-		
-		getMyoAudio();
+		/*if (calibrate)
+		{
+			initializeMyo();
+			calibrate = false;
+		}
+
+		getMyoAudio();*/
 
 		time_t timer;
 		struct tm y2k = { 0 };
@@ -110,7 +115,13 @@ public:
     void paint (Graphics& g) override
     {
         // (Our component is opaque, so we must completely fill the background with a solid colour)
+		if (calibrate)
+		{
+			initializeMyo();
+			calibrate = false;
+		}
 
+		getMyoAudio();
 		repaint();
 
 		time_t timer;
@@ -345,12 +356,81 @@ public:
 
 	void getMyoAudio()
 	{
-	/*	myo::Hub hub("com.tamuhack.djmyo");
+		myo::Hub hub("com.tamuhack.djmyo");
 		hub.setLockingPolicy(myo::Hub::lockingPolicyNone);
-		myo::Myo* myo = hub.waitForMyo(10000);
+		myo::Myo* myo = hub.waitForMyo(20);
 		hub.addListener(&collector);
-		myo->vibrate(myo::Myo::vibrationMedium);
-		*/
+		hub.run(2);
+		//myo->vibrate(myo::Myo::vibrationMedium);
+		
+		char c = collector.getNote();
+
+		if (c == 'A')	//A
+		{
+			frequency[count] = 440.00;
+			amplitude[count] = 0.9f;
+			phaseDelta[count] = (float)(2.0 * double_Pi * frequency[count] / sampleRate);
+			xcoor[count] = getWidth() / 6.0f - 10.0f;
+			ycoor[count] = getHeight() - getHeight() / 6.0f;
+		}
+		else if (c == 'B')	//B
+		{
+			frequency[count] = 493.88f;
+			amplitude[count] = 0.9f;
+			phaseDelta[count] = (float)(2.0 * double_Pi * frequency[count] / sampleRate);
+			xcoor[count] = getWidth() / 2.0f - 5.0f;
+			ycoor[count] = getHeight() - getHeight() / 6.0f;
+		}
+		else if (c == 'C')	//C
+		{
+			frequency[count] = 261.63f;
+			amplitude[count] = 0.9f;
+			phaseDelta[count] = (float)(2.0 * double_Pi * frequency[count] / sampleRate);
+			xcoor[count] = getWidth() - getWidth() / 6.0f - 10.0f;
+			ycoor[count] = getHeight() - getHeight() / 6.0f;
+		}
+		else if (c == 'D')	//D
+		{
+			frequency[count] = 293.66f;
+			amplitude[count] = 0.9f;
+			phaseDelta[count] = (float)(2.0 * double_Pi * frequency[count] / sampleRate);
+			xcoor[count] = getWidth() / 6.0f - 10.0f;
+			ycoor[count] = getHeight() / 2.0f;
+		}
+		else if (c == 'E')	//E
+		{
+			frequency[count] = 329.63f;
+			amplitude[count] = 0.9f;
+			phaseDelta[count] = (float)(2.0 * double_Pi * frequency[count] / sampleRate);
+			xcoor[count] = getWidth() / 2.0f - 5.0f;
+			ycoor[count] = getHeight() / 2.0f;
+		}
+		else if (c == 'F')	//F
+		{
+			frequency[count] = 349.23f;
+			amplitude[count] = 0.9f;
+			phaseDelta[count] = (float)(2.0 * double_Pi * frequency[count] / sampleRate);
+			xcoor[count] = getWidth() / 6.0f - 10.0f;
+			ycoor[count] = getHeight() / 6.0f;
+		}
+		else if (c == 'G')	//G
+		{
+			frequency[count] = 392.00f;
+			amplitude[count] = 0.9f;
+			phaseDelta[count] = (float)(2.0 * double_Pi * frequency[count] / sampleRate);
+			xcoor[count] = getWidth() / 2.0f - 5.0f;
+			ycoor[count] = getHeight() / 6.0f;
+		}
+
+		if (count < 9)
+		{
+			count++;
+		}
+		else
+		{
+			count = 0;
+		}
+
 	}
 
 private:
@@ -362,7 +442,7 @@ private:
 
 	int last_seconds = 0;
 	int count = 0;
-
+	bool calibrate = true;
 	vector<float> xcoor;
 	vector<float> ycoor;
 
