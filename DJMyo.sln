@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DJMyo", "DJMyo\DJMyo.vcxproj", "{63615CEC-40AB-4723-AD71-E7A0C86CEF7B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DJMyo_Synth", "DJMyo_Synth\Builds\VisualStudio2013\DJMyo_Synth.vcxproj", "{9DAD5528-9B5C-AF56-253B-0D6681E3550F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -15,6 +17,10 @@ Global
 		{63615CEC-40AB-4723-AD71-E7A0C86CEF7B}.Debug|Win32.Build.0 = Debug|Win32
 		{63615CEC-40AB-4723-AD71-E7A0C86CEF7B}.Release|Win32.ActiveCfg = Release|Win32
 		{63615CEC-40AB-4723-AD71-E7A0C86CEF7B}.Release|Win32.Build.0 = Release|Win32
+		{9DAD5528-9B5C-AF56-253B-0D6681E3550F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9DAD5528-9B5C-AF56-253B-0D6681E3550F}.Debug|Win32.Build.0 = Debug|Win32
+		{9DAD5528-9B5C-AF56-253B-0D6681E3550F}.Release|Win32.ActiveCfg = Release|Win32
+		{9DAD5528-9B5C-AF56-253B-0D6681E3550F}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

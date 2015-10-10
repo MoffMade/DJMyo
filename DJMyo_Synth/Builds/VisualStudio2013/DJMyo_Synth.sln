@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2013
+Project("{F4D6D267-2B44-CCA9-3173-1BCAEE01A02A}") = "DJMyo_Synth", "DJMyo_Synth.vcxproj", "{9DAD5528-9B5C-AF56-253B-0D6681E3550F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9DAD5528-9B5C-AF56-253B-0D6681E3550F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9DAD5528-9B5C-AF56-253B-0D6681E3550F}.Debug|Win32.Build.0 = Debug|Win32
+		{9DAD5528-9B5C-AF56-253B-0D6681E3550F}.Release|Win32.ActiveCfg = Release|Win32
+		{9DAD5528-9B5C-AF56-253B-0D6681E3550F}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
