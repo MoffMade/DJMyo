@@ -32,6 +32,7 @@ class DataCollector : public myo::DeviceListener{
 	myo::Vector3<float> e_vec;
 	myo::Vector3<float> f_vec;
 	myo::Vector3<float> g_vec;
+	char noteToSet;
 public:
 	DataCollector();
 	void setOrigin();
@@ -45,5 +46,6 @@ public:
 	void onLock(myo::Myo* myo, uint64_t timestamp);
 	char quat_to_note(myo::Quaternion<float> q);
 	double angle_between(myo::Vector3<float> v1, myo::Vector3<float> v2);
+	char getNote();
 	void print();
 };

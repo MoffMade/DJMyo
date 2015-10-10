@@ -14,7 +14,6 @@ char DataCollector::quat_to_note(myo::Quaternion<float> q){
 	*/
 	myo::Vector3<float> v(q.x(), q.y(), q.z());
 	if (angle_between(v, a_vec) <=30){
-		
 		return 'A';
 	}
 	else if (angle_between(v, b_vec) <= 30){
@@ -40,6 +39,7 @@ char DataCollector::quat_to_note(myo::Quaternion<float> q){
 }
 DataCollector::DataCollector(){
 	data = new MyoData;
+	noteToSet = 'A';
 }
 void DataCollector::setOrigin(){
 	origin = data->abs_orient;
@@ -89,6 +89,12 @@ void DataCollector::onOrientationData(myo::Myo* myo, uint64_t timestamp, const m
 }
 void DataCollector::onPose(myo::Myo* myo, uint64_t timestamp, myo::Pose pose){
 	data->currentPose = pose;	
+	
+	if (pose == myo::Pose::fingersSpread && noteToSet <= 'G'){
+		setNoteOrientations(noteToSet);
+		myo->vibrate(myo::Myo::vibrationMedium);
+		noteToSet++;
+	}
 }
 void DataCollector::onArmSync(myo::Myo* myo, uint64_t timestamp, myo::Arm arm, myo::XDirection xDirection, float rotation, myo::WarmupState warmupState){
 	data->onArm = true;
@@ -103,6 +109,12 @@ void DataCollector::onUnlock(myo::Myo* myo, uint64_t timestamp){
 void DataCollector::onLock(myo::Myo* myo, uint64_t timestamp){
 	data->isUnlocked = false;
 }
+
+char DataCollector::getNote()
+{
+	return quat_to_note(data->ref_orient);
+}
+
 void DataCollector::print(){
 	printf("\r");
 	// Print out the orientation. Orientation data is always available, even if no arm is currently recognized.
