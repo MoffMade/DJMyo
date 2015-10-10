@@ -13,25 +13,26 @@ char DataCollector::quat_to_note(myo::Quaternion<float> q){
 	G- X .27	Y .35	Z .60	
 	*/
 	myo::Vector3<float> v(q.x(), q.y(), q.z());
-	if (angle_between(v, a_vec) <=20){		
+	if (angle_between(v, a_vec) <=30){
+		
 		return 'A';
 	}
-	else if (angle_between(v, b_vec) <= 20){
+	else if (angle_between(v, b_vec) <= 30){
 		return 'B';
 	}
-	else if (angle_between(v, c_vec) <= 20){
+	else if (angle_between(v, c_vec) <= 30){
 		return 'C';
 	}
-	else if (angle_between(v, d_vec) <= 20){
+	else if (angle_between(v, d_vec) <= 30){
 		return 'D';
 	}
-	else if (angle_between(v, e_vec) <= 20){
+	else if (angle_between(v, e_vec) <= 30){
 		return 'E';
 	}
-	else if (angle_between(v, f_vec) <= 20){
+	else if (angle_between(v, f_vec) <= 30){
 		return 'F';
 	}
-	else if (angle_between(v, g_vec) <= 20){
+	else if (angle_between(v, g_vec) <= 30){
 		return 'G';
 	}
 	else
@@ -39,7 +40,6 @@ char DataCollector::quat_to_note(myo::Quaternion<float> q){
 }
 DataCollector::DataCollector(){
 	data = new MyoData;
-	noteToSet = 'A';
 }
 void DataCollector::setOrigin(){
 	origin = data->abs_orient;
@@ -88,13 +88,7 @@ void DataCollector::onOrientationData(myo::Myo* myo, uint64_t timestamp, const m
 	
 }
 void DataCollector::onPose(myo::Myo* myo, uint64_t timestamp, myo::Pose pose){
-	data->currentPose = pose;
-
-	if (pose == myo::Pose::fingersSpread && noteToSet <= 'G'){
-		setNoteOrientations(noteToSet);
-		myo->vibrate(myo::Myo::vibrationMedium);
-		noteToSet++;
-	}
+	data->currentPose = pose;	
 }
 void DataCollector::onArmSync(myo::Myo* myo, uint64_t timestamp, myo::Arm arm, myo::XDirection xDirection, float rotation, myo::WarmupState warmupState){
 	data->onArm = true;
