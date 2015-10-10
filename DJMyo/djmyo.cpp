@@ -46,34 +46,6 @@ int main(int argc, char** argv)
 				hub.run(2000);
 				collector.setOrigin();
 				myo->vibrate(myo::Myo::vibrationMedium);
-				std::cout << "Setting A. Hold Still" << std::endl;
-				hub.run(2000);
-				collector.setNoteOrientations('A');
-				myo->vibrate(myo::Myo::vibrationMedium);
-				std::cout << "Setting B. Hold Still" << std::endl;
-				hub.run(2000);
-				collector.setNoteOrientations('B');
-				myo->vibrate(myo::Myo::vibrationMedium);
-				std::cout << "Setting C. Hold Still" << std::endl;
-				hub.run(2000);
-				collector.setNoteOrientations('C');
-				myo->vibrate(myo::Myo::vibrationMedium);
-				std::cout << "Setting D. Hold Still" << std::endl;
-				hub.run(2000);
-				collector.setNoteOrientations('D');
-				myo->vibrate(myo::Myo::vibrationMedium);
-				std::cout << "Setting E. Hold Still" << std::endl;
-				hub.run(2000);
-				collector.setNoteOrientations('E');
-				myo->vibrate(myo::Myo::vibrationMedium);
-				std::cout << "Setting F. Hold Still" << std::endl;
-				hub.run(2000);
-				collector.setNoteOrientations('F');
-				myo->vibrate(myo::Myo::vibrationMedium);
-				std::cout << "Setting G. Hold Still" << std::endl;
-				hub.run(2000);
-				collector.setNoteOrientations('G');
-				myo->vibrate(myo::Myo::vibrationMedium);
 				firstRun = false;
 			}
 			// In each iteration of our main loop, we run the Myo event loop for a set number of milliseconds.

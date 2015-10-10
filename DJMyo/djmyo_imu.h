@@ -32,6 +32,7 @@ class DataCollector : public myo::DeviceListener{
 	myo::Vector3<float> e_vec;
 	myo::Vector3<float> f_vec;
 	myo::Vector3<float> g_vec;
+	char noteToSet;
 public:
 	DataCollector();
 	void setOrigin();
